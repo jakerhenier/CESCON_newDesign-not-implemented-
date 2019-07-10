@@ -1,67 +1,10 @@
-<?php 
-session_start();
-require_once('../../../includes/config/db.php');
-require_once('../../../includes/function/crypt.php');
-
-function getAccessLevel($access_level) {
-    $keypair = array(
-        "0" => "Normal User",
-        "1" => "Administrator"
-    );
-
-    return $keypair[$access_level];
-}
-
-$staff_number = '';
-$first_name = '';
-$last_name = '';
-$contact_number = '';
-$username = '';
-$password = '';
-$access_level = '';
-
-$staffData = array();
-
-if (!isset($_SESSION['staff_session'])) {
-    header('location: ../../index.php');
-}
-else {
-    $staffData = $_SESSION['staff_session'];
-}
-
-if ($staffData[0]['access_level'] == 0) {
-    header('location: ../../index.php');
-}
-
-if (isset($_GET['edit'])) {
-    $staff_number = $_GET['edit'];
-
-    $query = "SELECT * FROM staff WHERE staff_number = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $staff_number);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $staff_number = $row['staff_number'];
-            $first_name = $row['first_name'];
-            $last_name = $row['last_name'];
-            $contact_number = $row['contact_number'];
-            $username = $row['username'];
-            $password = $row['password'];         
-            $access_level = $row['access_level'];   
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 
 <html>
 
     <head>
-        <title>Edit a staff</title>
+        <title>Add a branch</title>
 
         <link rel="stylesheet" type = "text/css" media = "all" href="../../../styles/style.css">
         <link rel="shortcut icon" href="../../../images/logo_clear.png" type="image/x-icon">
@@ -80,7 +23,7 @@ if (isset($_GET['edit'])) {
                 <div class="menu-button" id ="menu-button">
                     <img src="../../../images/menu.png" alt="" id="menu-icon" onclick="expandMenu()">
                 </div>
-                <p class="page-label">Edit a staff</p>
+                <p class="page-label">Add a branch</p>
             </div>
         </div>
 
@@ -89,28 +32,28 @@ if (isset($_GET['edit'])) {
                 <div class="logout-button-box">
                     logout
                 </div>
-            </a>
-            <p id = "username">Username</p> -->
+            </a> -->
+            <p id = "username"></p>
         </div>
 
         <div class="top-menu-list">
             
             <div class="menu-category">
-                <a href="../../navigation/audit.php" class="top-menu-item">
+                <a href="../../navigation/audit.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Audit</p>
                         <img src="../../../images/audit.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/events.php" class="top-menu-item">
+                <a href="../../navigation/events.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Events</p>
                         <img src="../../../images/events.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/reservations.php" class="top-menu-item">
+                <a href="../../navigation/reservations.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Reservations</p>
                         <img src="../../../images/registrants.png" alt="" id="item-icon">
@@ -121,21 +64,21 @@ if (isset($_GET['edit'])) {
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/members.php" class="top-menu-item">
+                <a href="../../navigation/members.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Members</p>
                         <img src="../../../images/member.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/staffs.php" class="top-menu-item">
+                <a href="../../navigation/staffs.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Staffs</p>
                         <img src="../../../images/staff.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/pastors.php" class="top-menu-item">
+                <a href="../../navigation/pastors.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Pastors</p>
                         <img src="../../../images/pastor.png" alt="" id="item-icon">
@@ -146,7 +89,7 @@ if (isset($_GET['edit'])) {
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/branches.php" class="top-menu-item">
+                <a href="../../navigation/branches.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Branches</p>
                         <img src="../../../images/branch.png" alt="" id="item-icon">
@@ -169,21 +112,21 @@ if (isset($_GET['edit'])) {
 
                 <div class="menu-list">
 
-                    <a href="../../navigation/audit.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/audit.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/audit.png" alt="" id="item-icon">
                             <p>Audit</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/events.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/events.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/events.png" alt="" id="item-icon">
                             <p>Events</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/reservations.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/reservations.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/registrants.png" alt="" id="item-icon">
                             <p>Reservations</p>
@@ -192,21 +135,21 @@ if (isset($_GET['edit'])) {
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/members.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/members.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/member.png" alt="" id="item-icon">
                             <p>Members</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/staffs.php" class="menu-link" id="menu-link">
-                        <div class="link-box affiliate-item" id = "active-item">
+                    <a href="../../navigation/staffs.html" class="menu-link" id="menu-link">
+                        <div class="link-box affiliate-item">
                             <img src="../../../images/staff.png" alt="" id="item-icon">
                             <p>Staffs</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/pastors.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/pastors.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/pastor.png" alt="" id="item-icon">
                             <p>Pastors</p>
@@ -215,8 +158,8 @@ if (isset($_GET['edit'])) {
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/branches.php" class="menu-link" id="menu-link">
-                        <div class="link-box branch-item">
+                    <a href="../../navigation/branches.html" class="menu-link" id="menu-link">
+                        <div class="link-box branch-item" id = "active-item">
                             <img src="../../../images/branch.png" alt="" id="item-icon">
                             <p>Branches</p>
                         </div>
@@ -225,13 +168,13 @@ if (isset($_GET['edit'])) {
                 </div>
 
                 <div class="bottom-items">
-                    <!-- <p id = "username-area">Username ajsdfkhfkjasdhfkjagsfkgadshfggf</p>
+                    <p id = "username-area"></p>
 
                     <button id="input-toggle">
                         <img id = "action-icon" src="../../../images/dark_outline.png" alt="" onclick="darkMode()">
                     </button>
 
-                    <a href="" class="logout-button">
+                    <!-- <a href="" class="logout-button">
                         <div class="logout-box">
                             <span class="out-context">logout</span>
                             <img src="../../../images/logout.png" alt="" id="action-icon">
@@ -249,25 +192,25 @@ if (isset($_GET['edit'])) {
 
                         <div class="form-box">
 
-                            <h2 id="aff-head">Edit staff information</h2>
+                            <h2 id="branch-head">Add branch information</h2>
 
-                            <form action = "../../../includes/actions/staff_edit.php" method="POST">
+                            <form action="../../../includes/actions/branch_add.php" method="POST">
                                 <div class="field-box">
-                                    <p>First name</p>
-                                    <input type = "text" name = "first_name" value="<?php echo $first_name ?>" id="aff-field" required>
+                                    <p>Branch name</p>
+                                    <input type="text" name="name" id="branch-field">
                                 </div>
                                 <div class="field-box">
-                                    <p>Last name</p>
-                                    <input type = "text" name = "last_name" value="<?php echo $last_name ?>" id="aff-field" required>
+                                    <p>Branch location</p>
+                                    <input type="text" name="address" id="branch-field">
                                 </div>
                                 <div class="field-box">
-                                    <p>Contact number (+63)</p>
-                                    <input type = "number" min=0 name = "contact_number" value="<?php echo $contact_number ?>" id="aff-field" required>
+                                    <p>Date established</p>
+                                    <input type="date" name="date_established" id="branch-field">
                                 </div>
-                                <!-- <div class="field-box">
-                                    <p>Branch</p>
-                                    <select name="" id="aff-field">
-                                        <option value="" selected disabled>Select...</option>
+                                <div class="field-box">
+                                    <p>Branch district</p>
+                                    <select name="district" id="branch-field">
+                                    <option value="" selected disabled>Select...</option>
                                         <option value="Agusan District">Agusan District</option>
                                         <option value="Bukidnon">Bukidnon</option>
                                         <option value="Cebu">Cebu</option>
@@ -289,33 +232,13 @@ if (isset($_GET['edit'])) {
                                         <option value="Zampen District">Zampen District</option>
                                         <option value="Bohol">Bohol</option>
                                     </select>
-                                </div> -->
-                                <div id="form-break"></div>
-                                <div class="field-box">
-                                    <p>Username</p>
-                                    <input type = "text" name = "username" value="<?php echo $username ?>" id="aff-field" required>
-                                </div>
-                                <div class="field-box">
-                                    <p>Password</p>
-                                    <input type = "text" name = "password" value="<?php echo encrypt_decrypt($password, "decrypt"); ?>" id="aff-field" required>
                                 </div>
                                 <div class="field-box max-width">
-                                    <p>Access level</p>
-                                    <select name="access_level" required>
-                                        <option value="<?php echo $access_level ?>" selected><?php echo getAccessLevel($access_level) ?></option>
-                                    <?php 
-                                    if ($access_level == 0) { 
-                                    ?>
-                                        <option value="1">Administrator</option>
-                                    <?php } 
-                                    else if ($access_level == 1) { ?>
-                                        <option value="0">Normal User</option>
-                                    <?php } ?>
-                                    </select>
+                                    <p>Branch details</p>
+                                    <textarea name="details" id="branch-field"></textarea>
                                 </div>
-                                <button type = "submit" name="submit" value="<?php echo $staff_number ?>" id="aff-bt">Save</button>
-                                <a href="" class="delete-bt">Delete</a>
-                                <a href="../../navigation/staffs.php" class="cancel-bt" id="aff-cancel">Cancel</a>
+                                <button type="submit" name="submit" id="branch-bt">Add</button>
+                                <a href="../../navigation/branches.html" class="cancel-bt" id="branch-cancel">Cancel</a>
                             </form>
 
                         </div>

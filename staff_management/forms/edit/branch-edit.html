@@ -1,72 +1,3 @@
-<?php 
-require_once('../../../includes/config/db.php');
-
-
-if (isset($_GET['edit'])) {
-    $branch_id = '';
-    $name = '';
-    $description = '';
-    $address = '';
-    $district = '';
-    $date_established = '';
-
-    $branch_id = $_GET['edit'];
-
-    $query = "SELECT * FROM branch WHERE branch_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $branch_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $branch_id = $row['branch_id'];
-            $name = $row['name'];
-            $description = $row['description'];
-            $address = $row['address'];
-            $district = $row['district'];
-            $date_established = date('Y-m-d', strtotime($row['date_established']));
-        }
-    }
-
-    function filter($array) {
-        global $district;
-
-        if ($array != $district) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    $array = array(
-        "Agusan District",
-        "Bukidnon",
-        "Cebu",
-        "CENODA District",
-        "COMVAL District",
-        "Cotabato 1 (North)",
-        "Cotabato 2",
-        "Davao City",
-        "Davao Del Sur",
-        "Emmanuel District",
-        "Maranatha District",
-        "Monkayo District",
-        "NEDA District",
-        "Samal (IGACOS) District",
-        "Sarangani District",
-        "SOCSARGEN District",
-        "Valenzuela City",
-        "Zampen District",
-        "Bohol",
-    );
-
-    $newArr = array_filter($array, "filter");
-    
-}
-
-?>
-
 <!DOCTYPE html>
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 
@@ -108,21 +39,21 @@ if (isset($_GET['edit'])) {
         <div class="top-menu-list">
             
             <div class="menu-category">
-                <a href="../../navigation/audit.php" class="top-menu-item">
+                <a href="../../navigation/audit.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Audit</p>
                         <img src="../../../images/audit.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/events.php" class="top-menu-item">
+                <a href="../../navigation/events.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Events</p>
                         <img src="../../../images/events.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/reservations.php" class="top-menu-item">
+                <a href="../../navigation/reservations.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Reservations</p>
                         <img src="../../../images/registrants.png" alt="" id="item-icon">
@@ -133,21 +64,21 @@ if (isset($_GET['edit'])) {
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/members.php" class="top-menu-item">
+                <a href="../../navigation/members.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Members</p>
                         <img src="../../../images/member.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/staffs.php" class="top-menu-item">
+                <a href="../../navigation/staffs.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Staffs</p>
                         <img src="../../../images/staff.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/pastors.php" class="top-menu-item">
+                <a href="../../navigation/pastors.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Pastors</p>
                         <img src="../../../images/pastor.png" alt="" id="item-icon">
@@ -158,7 +89,7 @@ if (isset($_GET['edit'])) {
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/branches.php" class="top-menu-item">
+                <a href="../../navigation/branches.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Branches</p>
                         <img src="../../../images/branch.png" alt="" id="item-icon">
@@ -181,21 +112,21 @@ if (isset($_GET['edit'])) {
 
                 <div class="menu-list">
 
-                    <a href="../../navigation/audit.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/audit.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/audit.png" alt="" id="item-icon">
                             <p>Audit</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/events.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/events.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/events.png" alt="" id="item-icon">
                             <p>Events</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/reservations.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/reservations.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/registrants.png" alt="" id="item-icon">
                             <p>Reservations</p>
@@ -204,21 +135,21 @@ if (isset($_GET['edit'])) {
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/members.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/members.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/member.png" alt="" id="item-icon">
                             <p>Members</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/staffs.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/staffs.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/staff.png" alt="" id="item-icon">
                             <p>Staffs</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/pastors.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/pastors.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/pastor.png" alt="" id="item-icon">
                             <p>Pastors</p>
@@ -227,7 +158,7 @@ if (isset($_GET['edit'])) {
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/branches.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/branches.html" class="menu-link" id="menu-link">
                         <div class="link-box branch-item" id = "active-item">
                             <img src="../../../images/branch.png" alt="" id="item-icon">
                             <p>Branches</p>
@@ -266,34 +197,49 @@ if (isset($_GET['edit'])) {
                             <form action="../../../includes/actions/branch_edit.php" method="POST">
                                 <div class="field-box">
                                     <p>Branch name</p>
-                                    <input type="text" name="name" value="<?php echo $name ?>" required>
+                                    <input type="text" name="name" value="" required>
                                 </div>
                                 <div class="field-box">
                                     <p>Branch location</p>
-                                    <input type="text" name="address" value="<?php echo $address ?>" required>
+                                    <input type="text" name="address" value="" required>
                                 </div>
                                 <div class="field-box">
                                     <p>Date established</p>
-                                    <input type="date" name="date_established" value="<?php echo $date_established ?>" required>
+                                    <input type="date" name="date_established" value="" required>
                                 </div>
                                 <div class="field-box">
                                     <p>Branch district</p>
                                     <select name="district" id="branch-field" required>
-                                        <option value="<?php echo $district ?>" selected><?php echo $district ?></option>
-                                        <?php 
-                                        foreach ($newArr as $list) {
-                                            echo '<option value="'.$list.'">'.$list.'</option>';
-                                        }
-                                        ?>
+                                        <option value="" selected disabled>Select...</option>
+                                        <option value="Agusan District">Agusan District</option>
+                                        <option value="Bukidnon">Bukidnon</option>
+                                        <option value="Cebu">Cebu</option>
+                                        <option value="CENODA District">CENODA District</option>
+                                        <option value="COMVAL District">COMVAL District</option>
+                                        <option value="Cotabato 1 (North)">Cotabato 1 (North)</option>
+                                        <option value="Cotabato 2">Cotabato 2</option>
+                                        <option value="Davao City">Davao City</option>
+                                        <option value="Davao Del Sur">Davao Del Sur</option>
+                                        <option value="Emmanuel District">Emmanuel District</option>
+                                        <option value="MANA District">MANA District</option>
+                                        <option value="Maranatha District">Maranatha District</option>
+                                        <option value="Monkayo District">Monkayo District</option>
+                                        <option value="NEDA District">NEDA District</option>
+                                        <option value="Samal (IGACOS) District">Samal (IGACOS) District</option>
+                                        <option value="Sarangani District">Sarangani District</option>
+                                        <option value="SOCSARGEN District">SOCSARGEN District</option>
+                                        <option value="Valenzuela City">Valenzuela City</option>
+                                        <option value="Zampen District">Zampen District</option>
+                                        <option value="Bohol">Bohol</option>
                                     </select>
                                 </div>
                                 <div class="field-box max-width">
                                     <p>Branch details</p>
-                                    <textarea name="details" id="branch-field" required><?php echo $description ?></textarea>
+                                    <textarea name="details" id="branch-field" required></textarea>
                                 </div>
-                                <button type = "submit" name="submit" id="branch-bt" value="<?php echo $branch_id ?>">Save Changes</button>
-                                <a href="../../navigation/branches.php?delete='.$row['branch_id'].'" class="delete-bt">Delete</a>
-                                <a href="../../navigation/branches.php" class="cancel-bt" id="branch-cancel">Cancel</a>
+                                <button type = "submit" name="submit" id="branch-bt" value="">Save Changes</button>
+                                <a href="" class="delete-bt">Delete</a>
+                                <a href="" class="cancel-bt" id="branch-cancel">Cancel</a>
                             </form>
 
                         </div>

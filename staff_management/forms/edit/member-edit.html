@@ -1,99 +1,3 @@
-<?php 
-require_once('../../../includes/config/db.php');
-
-$member_id = '';
-$first_name = '';
-$last_name = '';
-$dob = '01-01-1970';
-$sex = '';
-$district = '';
-$contact_number = '';
-$email = '';
-$church_name = '';
-$church_address = '';
-$district = '';
-
-if (isset($_GET['edit'])) {
-    $member_id = $_GET['edit'];
-
-    $query = "SELECT * FROM member WHERE member_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('i', $member_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $member_id = $row['member_id'];
-            $first_name = $row['first_name'];
-            $last_name = $row['last_name'];
-            $dob = date('Y-m-d', strtotime($row['DOB']));
-            $sex = $row['sex'];
-            $contact_number = $row['contact_number'];
-            $email = $row['email'];
-            $allergies = $row['allergies'];
-            $church_name = $row['church_name'];
-            $church_address = $row['church_address'];
-            $district = $row['church_district'];
-        }
-    }
-
-    function filterDistrict($array) {
-        global $district;
-
-        if ($array != $district) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    function filterSex($array1) {
-        global $sex;
-
-        if ($array1 != $sex) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    $array = array(
-        "Agusan District",
-        "Bukidnon",
-        "Cebu",
-        "CENODA District",
-        "COMVAL District",
-        "Cotabato 1 (North)",
-        "Cotabato 2",
-        "Davao City",
-        "Davao Del Sur",
-        "Emmanuel District",
-        "Maranatha District",
-        "Monkayo District",
-        "NEDA District",
-        "Samal (IGACOS) District",
-        "Sarangani District",
-        "SOCSARGEN District",
-        "Valenzuela City",
-        "Zampen District",
-        "Bohol",
-    );
-
-    $array1 = array(
-        "Male",
-        "Female"
-    );
-
-    $newArr = array_filter($array, "filterDistrict");
-    $newArr1 = array_filter($array1, "filterSex");
-
-    $pastor_query = "SELECT * FROM pastor";
-    $result = $conn->query($pastor_query);  
-}
-?>
-
 <!DOCTYPE html>
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 
@@ -135,21 +39,21 @@ if (isset($_GET['edit'])) {
         <div class="top-menu-list">
             
             <div class="menu-category">
-                <a href="../../navigation/audit.php" class="top-menu-item">
+                <a href="../../navigation/audit.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Audit</p>
                         <img src="../../../images/audit.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/events.php" class="top-menu-item">
+                <a href="../../navigation/events.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Events</p>
                         <img src="../../../images/events.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/reservations.php" class="top-menu-item">
+                <a href="../../navigation/reservations.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Reservations</p>
                         <img src="../../../images/registrants.png" alt="" id="item-icon">
@@ -160,21 +64,21 @@ if (isset($_GET['edit'])) {
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/members.php" class="top-menu-item">
+                <a href="../../navigation/members.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Members</p>
                         <img src="../../../images/member.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/staffs.php" class="top-menu-item">
+                <a href="../../navigation/staffs.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Staffs</p>
                         <img src="../../../images/staff.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/pastors.php" class="top-menu-item">
+                <a href="../../navigation/pastors.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Pastors</p>
                         <img src="../../../images/pastor.png" alt="" id="item-icon">
@@ -185,7 +89,7 @@ if (isset($_GET['edit'])) {
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/branches.php" class="top-menu-item">
+                <a href="../../navigation/branches.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Branches</p>
                         <img src="../../../images/branch.png" alt="" id="item-icon">
@@ -208,21 +112,21 @@ if (isset($_GET['edit'])) {
 
                 <div class="menu-list">
 
-                    <a href="../../navigation/audit.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/audit.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/audit.png" alt="" id="item-icon">
                             <p>Audit</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/events.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/events.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/events.png" alt="" id="item-icon">
                             <p>Events</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/reservations.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/reservations.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/registrants.png" alt="" id="item-icon">
                             <p>Reservations</p>
@@ -231,21 +135,21 @@ if (isset($_GET['edit'])) {
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/members.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/members.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item" id = "active-item">
                             <img src="../../../images/member.png" alt="" id="item-icon">
                             <p>Members</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/staffs.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/staffs.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/staff.png" alt="" id="item-icon">
                             <p>Staffs</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/pastors.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/pastors.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/pastor.png" alt="" id="item-icon">
                             <p>Pastors</p>
@@ -254,7 +158,7 @@ if (isset($_GET['edit'])) {
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/branches.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/branches.html" class="menu-link" id="menu-link">
                         <div class="link-box branch-item">
                             <img src="../../../images/branch.png" alt="" id="item-icon">
                             <p>Branches</p>
@@ -293,34 +197,30 @@ if (isset($_GET['edit'])) {
                             <form action="../../../includes/actions/member_edit.php" method="POST">
                                 <div class="field-box">
                                     <p>First name</p>
-                                    <input type="text" name = "first_name" value="<?php echo $first_name ?>" id="aff-field" required autofocus>
+                                    <input type="text" name = "first_name" value="" id="aff-field" required autofocus>
                                 </div>
                                 <div class="field-box">
                                     <p>Last name</p>
-                                    <input type="text" name = "last_name" value="<?php echo $last_name ?>" id="aff-field" required>
+                                    <input type="text" name = "last_name" value="" id="aff-field" required>
                                 </div>
                                 <div class="field-box">
                                     <p>Date of birth</p>
-                                    <input type="date" name="dob" value="<?php echo $dob ?>" id="aff-field" required>
+                                    <input type="date" name="dob" value="" id="aff-field" required>
                                 </div>
                                 <div class="field-box">
                                     <p>Sex</p>
                                     <select name="sex" id="aff-field">
-                                        <option value="<?php echo $sex; ?>" selected disabled><?php echo $sex; ?></option>
-                                        <?php 
-                                        foreach ($newArr1 as $list) {
-                                            echo '<option value="'.$list.'">'.$list.'</option>';
-                                        }
-                                        ?>
+                                        <option value="" selected disabled></option>
+
                                     </select>
                                 </div>
                                 <div class="field-box">
                                     <p>Contact number (+63)</p>
-                                    <input type="number" name = "contact_number" value="<?php echo $contact_number ?>" id="aff-field">
+                                    <input type="number" name = "contact_number" value="" id="aff-field">
                                 </div>
                                 <div class="field-box">
                                     <p>Email</p>
-                                    <input type="email" name="email" value="<?php echo $email ?>" id="aff-field">
+                                    <input type="email" name="email" value="" id="aff-field">
                                 </div>
                                 <div class="field-box max-width allergy-sec">
                                     <p>Allergies (ignore if none)</p>
@@ -343,39 +243,27 @@ if (isset($_GET['edit'])) {
                                 </div>
                                 <div class="field-box">
                                     <p>Church name</p>
-                                    <input type="text" name="church_name" value="<?php echo $church_name ?>"  id="aff-field">
+                                    <input type="text" name="church_name" value=""  id="aff-field">
                                 </div>
                                 <div class="field-box">
                                     <p>Church address</p>
-                                    <input type="text" name="church_address" value="<?php echo $church_address ?>" id="aff-field">
+                                    <input type="text" name="church_address" value="" id="aff-field">
                                 </div>
                                 <div class="field-box">
                                     <p>Church district</p>
                                     <select name="church_district" id="aff-field" required>
-                                        <option value="<?php echo $district ?>" selected><?php echo $district ?></option>
-                                        <?php 
-                                        foreach ($newArr as $list) {
-                                            echo '<option value="'.$list.'">'.$list.'</option>';
-                                        }
-                                        ?>
+                                        <option value="" selected></option>
                                     </select>
                                 </div>
                                 <div class="field-box">
                                     <p>Pastor</p>
                                     <select name="pastor_id" id="aff-field" required>
                                         <option value="" selected disabled>Select Pastor</option>
-                                        <?php 
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo '<option value="'.$row['pastor_number'].'">'.$row['first_name'].' '.$row['last_name'].'</option>';
-                                            }
-                                        }
-                                        ?>
                                     </select>
                                 </div>
-                                <button type="submit" name="submit" id="aff-bt" value="<?php echo $member_id ?>">Save</button>
+                                <button type="submit" name="submit" id="aff-bt" value="">Save</button>
                                 <a href="" class="delete-bt">Delete</a>
-                                <a href="../../navigation/members.php" class="cancel-bt" id="aff-cancel">Cancel</a>
+                                <a href="../../navigation/members.html" class="cancel-bt" id="aff-cancel">Cancel</a>
                             </form>
 
                         </div>

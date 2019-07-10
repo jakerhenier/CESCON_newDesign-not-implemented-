@@ -4,7 +4,7 @@
 <html>
 
     <head>
-        <title>Add a branch</title>
+        <title>Add an event</title>
 
         <link rel="stylesheet" type = "text/css" media = "all" href="../../../styles/style.css">
         <link rel="shortcut icon" href="../../../images/logo_clear.png" type="image/x-icon">
@@ -23,7 +23,7 @@
                 <div class="menu-button" id ="menu-button">
                     <img src="../../../images/menu.png" alt="" id="menu-icon" onclick="expandMenu()">
                 </div>
-                <p class="page-label">Add a branch</p>
+                <p class="page-label">Edit an event</p>
             </div>
         </div>
 
@@ -32,28 +32,28 @@
                 <div class="logout-button-box">
                     logout
                 </div>
-            </a> -->
-            <p id = "username"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
+            </a>
+            <p id = "username">Username</p> -->
         </div>
 
         <div class="top-menu-list">
             
             <div class="menu-category">
-                <a href="../../navigation/audit.php" class="top-menu-item">
+                <a href="../../navigation/audit.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Audit</p>
                         <img src="../../../images/audit.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/events.php" class="top-menu-item">
+                <a href="../../navigation/events.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Events</p>
                         <img src="../../../images/events.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/reservations.php" class="top-menu-item">
+                <a href="../../navigation/reservations.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Reservations</p>
                         <img src="../../../images/registrants.png" alt="" id="item-icon">
@@ -64,21 +64,21 @@
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/members.php" class="top-menu-item">
+                <a href="../../navigation/members.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Members</p>
                         <img src="../../../images/member.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/staffs.php" class="top-menu-item">
+                <a href="../../navigation/staffs.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Staffs</p>
                         <img src="../../../images/staff.png" alt="" id="item-icon">
                     </div>
                 </a>
 
-                <a href="../../navigation/pastors.php" class="top-menu-item">
+                <a href="../../navigation/pastors.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Pastors</p>
                         <img src="../../../images/pastor.png" alt="" id="item-icon">
@@ -89,7 +89,7 @@
             <div class="break"></div>
 
             <div class="menu-category">
-                <a href="../../navigation/branches.php" class="top-menu-item">
+                <a href="../../navigation/branches.html" class="top-menu-item">
                     <div class="top-link-box">
                         <p>Branches</p>
                         <img src="../../../images/branch.png" alt="" id="item-icon">
@@ -112,21 +112,21 @@
 
                 <div class="menu-list">
 
-                    <a href="../../navigation/audit.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/audit.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/audit.png" alt="" id="item-icon">
                             <p>Audit</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/events.php" class="menu-link" id="menu-link">
-                        <div class="link-box event-menu-item">
+                    <a href="../../navigation/events.html" class="menu-link" id="menu-link">
+                        <div class="link-box event-menu-item" id = "active-item">
                             <img src="../../../images/events.png" alt="" id="item-icon">
                             <p>Events</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/reservations.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/reservations.html" class="menu-link" id="menu-link">
                         <div class="link-box event-menu-item">
                             <img src="../../../images/registrants.png" alt="" id="item-icon">
                             <p>Reservations</p>
@@ -135,21 +135,21 @@
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/members.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/members.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/member.png" alt="" id="item-icon">
                             <p>Members</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/staffs.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/staffs.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/staff.png" alt="" id="item-icon">
                             <p>Staffs</p>
                         </div>
                     </a>
 
-                    <a href="../../navigation/pastors.php" class="menu-link" id="menu-link">
+                    <a href="../../navigation/pastors.html" class="menu-link" id="menu-link">
                         <div class="link-box affiliate-item">
                             <img src="../../../images/pastor.png" alt="" id="item-icon">
                             <p>Pastors</p>
@@ -158,8 +158,8 @@
 
                     <div class="break"></div>
 
-                    <a href="../../navigation/branches.php" class="menu-link" id="menu-link">
-                        <div class="link-box branch-item" id = "active-item">
+                    <a href="../../navigation/branches.html" class="menu-link" id="menu-link">
+                        <div class="link-box branch-item">
                             <img src="../../../images/branch.png" alt="" id="item-icon">
                             <p>Branches</p>
                         </div>
@@ -168,13 +168,13 @@
                 </div>
 
                 <div class="bottom-items">
-                    <p id = "username-area"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
+                    <!-- <p id = "username-area">Username ajsdfkhfkjasdhfkjagsfkgadshfggf</p>
 
                     <button id="input-toggle">
                         <img id = "action-icon" src="../../../images/dark_outline.png" alt="" onclick="darkMode()">
                     </button>
 
-                    <!-- <a href="" class="logout-button">
+                    <a href="" class="logout-button">
                         <div class="logout-box">
                             <span class="out-context">logout</span>
                             <img src="../../../images/logout.png" alt="" id="action-icon">
@@ -192,53 +192,32 @@
 
                         <div class="form-box">
 
-                            <h2 id="branch-head">Add branch information</h2>
+                            <h2>Edit event information</h2>
 
-                            <form action="../../../includes/actions/branch_add.php" method="POST">
+                            <form action="../../../includes/actions/event_edit.php" method = "POST">
                                 <div class="field-box">
-                                    <p>Branch name</p>
-                                    <input type="text" name="name" id="branch-field">
-                                </div>
-                                <div class="field-box">
-                                    <p>Branch location</p>
-                                    <input type="text" name="address" id="branch-field">
+                                    <p>Event name</p>
+                                    <input type = "text" name="title" value="" required autofocus>
                                 </div>
                                 <div class="field-box">
-                                    <p>Date established</p>
-                                    <input type="date" name="date_established" id="branch-field">
+                                    <p>Location</p>
+                                    <input type="text" name="location" value="" required>
                                 </div>
                                 <div class="field-box">
-                                    <p>Branch district</p>
-                                    <select name="district" id="branch-field">
-                                    <option value="" selected disabled>Select...</option>
-                                        <option value="Agusan District">Agusan District</option>
-                                        <option value="Bukidnon">Bukidnon</option>
-                                        <option value="Cebu">Cebu</option>
-                                        <option value="CENODA District">CENODA District</option>
-                                        <option value="COMVAL District">COMVAL District</option>
-                                        <option value="Cotabato 1 (North)">Cotabato 1 (North)</option>
-                                        <option value="Cotabato 2">Cotabato 2</option>
-                                        <option value="Davao City">Davao City</option>
-                                        <option value="Davao Del Sur">Davao Del Sur</option>
-                                        <option value="Emmanuel District">Emmanuel District</option>
-                                        <option value="MANA District">MANA District</option>
-                                        <option value="Maranatha District">Maranatha District</option>
-                                        <option value="Monkayo District">Monkayo District</option>
-                                        <option value="NEDA District">NEDA District</option>
-                                        <option value="Samal (IGACOS) District">Samal (IGACOS) District</option>
-                                        <option value="Sarangani District">Sarangani District</option>
-                                        <option value="SOCSARGEN District">SOCSARGEN District</option>
-                                        <option value="Valenzuela City">Valenzuela City</option>
-                                        <option value="Zampen District">Zampen District</option>
-                                        <option value="Bohol">Bohol</option>
-                                    </select>
+                                    <p>Date</p>
+                                    <input type="date" name="date" value="" required>
                                 </div>
-                                <div class="field-box max-width">
-                                    <p>Branch details</p>
-                                    <textarea name="details" id="branch-field"></textarea>
+                                <div class="field-box">
+                                    <p>Fee</p>
+                                    <input type="number" name="rate" min=0 value="" required>
                                 </div>
-                                <button type="submit" name="submit" id="branch-bt">Add</button>
-                                <a href="../../navigation/branches.php" class="cancel-bt" id="branch-cancel">Cancel</a>
+                                <div class="field-box full-width">
+                                    <p>Details</p>
+                                    <textarea name="details" cols="30" rows="10"></textarea>
+                                </div>
+                                <button type="submit" name="submit" value="">Save</button>
+                                <a href="" class="delete-bt">Delete</a>
+                                <a href="../../navigation/events.html" class="cancel-bt" id="event-cancel">Cancel</a>
                             </form>
 
                         </div>
